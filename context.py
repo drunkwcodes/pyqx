@@ -161,11 +161,11 @@ class Context:
 	def setDefault(self, sect, ident, value):
 
 		try:
-			self.cp.set(sect, ident, value)
+			self.cp.set(sect, ident, str(value))
 		except NoSectionError:
 			print("Trying to set \"" + ident + "\" to \"" + str(value) + "\" on section \"" + sect + "\", but given section does not exist. Creating section.")
 			self.cp.add_section(sect)
-			self.cp.set(sect, ident, value)
+			self.cp.set(sect, ident, str(value))
 
 		f = open("defaults.cfg", "w")
 		self.cp.write(f)
@@ -293,7 +293,7 @@ class Context:
 
 	def saveDefaults(self):
 
-		self.setDefault("color", "primary_color", self.primaryColor.rgb())
+		self.setDefault("color", "primary_color", str(self.primaryColor.rgb()))
 		self.setDefault("color", "secondary_color", self.secondaryColor.rgb())
 
 		self.setDefault("selection", "transparent", self.transparentSelection)

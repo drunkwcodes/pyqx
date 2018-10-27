@@ -26,9 +26,9 @@ class Image:
 		image = QtGui.QImage(fileName).convertToFormat(QtGui.QImage.Format_ARGB32_Premultiplied)
 
 		if image.hasAlphaChannel():
-			bgColor = QtWidgets.QColor(0,0,0,0)
+			bgColor = QtGui.QColor(0,0,0,0)
 		else:
-			bgColor = QtWidgets.QColor(255,255,255)
+			bgColor = QtGui.QColor(255,255,255)
 
 		return cls(fileName, image, bgColor, context)
 

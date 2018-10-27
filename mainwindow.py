@@ -308,12 +308,12 @@ class MainWindow(QtWidgets.QMainWindow):
 
 	def openFile(self):
 		
-		fileName = QtWidgets.QFileDialog.getOpenFileName(self,
+		fileName_tuple = QtWidgets.QFileDialog.getOpenFileName(self,
 					self.context.getText("dialog_open", "title"),
 					"/home",
 					self.context.getText("dialog_open", "images") + u" (*.bmp *.gif *.png *.xpm *.jpg);;" + self.context.getText("dialog_open", "all_files") + u" (*)")
-		if fileName:
-			self.context.loadImage(fileName)
+		if fileName_tuple:
+			self.context.loadImage(fileName_tuple[0])
 
 	def saveFile(self):
 
@@ -346,7 +346,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
 		if self.context.currentImage().posHistory > 0:
 			self.context.currentImage().posHistory -= 1
-			self.context.currentImage().image = QtWidgets.QImage(self.context.currentImage().history[self.context.currentImage().posHistory])
+			self.context.currentImage().image = QtGui.QImage(self.context.currentImage().history[self.context.currentImage().posHistory])
 			self.signals.updateCanvas.emit()
 			self.signals.resizeCanvas.emit()
 
@@ -354,7 +354,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
 		if self.context.currentImage().posHistory < len(self.context.currentImage().history)-1:
 			self.context.currentImage().posHistory += 1
-			self.context.currentImage().image = QtWidgets.QImage(self.context.currentImage().history[self.context.currentImage().posHistory])
+			self.context.currentImage().image = QtGui.QImage(self.context.currentImage().history[self.context.currentImage().posHistory])
 			self.signals.updateCanvas.emit()
 			self.signals.resizeCanvas.emit()
 
